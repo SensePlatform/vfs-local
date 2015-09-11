@@ -543,7 +543,8 @@ module.exports = function setup(fsOptions) {
                     
                     fs.fchown(fd, uid, gid, function(err) {
                         fs.close(fd);
-                        if (err) return error(err);
+                        // Causes problems on Samba shares.
+                        // if (err) return error(err);
                         
                         pipe(fs.WriteStream(tempPath, {
                             encoding: options.encoding || null,
